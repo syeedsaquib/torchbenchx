@@ -1,0 +1,6 @@
+torch
+torchvision
+tensorflow
+plotly
+pandas
+psutil

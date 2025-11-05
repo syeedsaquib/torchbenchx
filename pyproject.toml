@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torchbenchx"
+version = "0.1.0"
+description = "Unified Deep Learning Benchmark Library for PyTorch and TensorFlow"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Syeed Mohd Saquib", email = "syeed.saquib@example.com" }
+]
+dependencies = [
+    "torch>=2.0",
+    "tensorflow>=2.12",
+    "plotly",
+    "pandas",
+    "numpy",
+    "psutil"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+
+[project.urls]
+Homepage = "https://pypi.org/project/torchbenchx/"
+Repository = "https://github.com/syeedsaquib/torchbenchx" 
+
+[tool.hatch.build.targets.wheel]
+packages = ["torchbenchx"]
+
+
