@@ -6,7 +6,7 @@ Benchmark. Compare. Visualize.
 
 It’s designed for researchers, developers, and AI enthusiasts who want quick, reliable model comparisons with interactive visualizations.
 
-## ⚙️ Key Features
+## Key Features
 
 - **Dual Framework Support**: Benchmark models from both PyTorch and TensorFlow using one unified API.
 - **Latency & Throughput Measurement**: Calculates per-inference latency and samples-per-second throughput.
@@ -101,5 +101,6 @@ visualize_all()  # Returns dict of figures: scatter, throughput_bar, latency_bar
 ## License
 
 MIT
+
 
 
