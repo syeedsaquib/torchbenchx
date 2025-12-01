@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }
 authors = [
-    { name = "Syeed Mohd Saquib", email = "syeed.saquib@example.com" }
+    { name = "Syeed Mohd Saquib", email = "syeedmsaquib@gmail.com" }
 ]
 dependencies = [
     "torch>=2.0",
@@ -31,5 +31,6 @@ Repository = "https://github.com/syeedsaquib/torchbenchx"
 
 [tool.hatch.build.targets.wheel]
 packages = ["torchbenchx"]
+
 
 
