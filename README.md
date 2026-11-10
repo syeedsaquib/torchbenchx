@@ -41,6 +41,28 @@ bench.summary()       # Styled table
 bench.visualize()     # Plotly scatter
 ```
 
+## Compare ONNX Runtime providers (AMD NPU, GPU, and CPU)
+
+The runnable example at `example/benchmark_onnx_providers.py` compares one ONNX model using the same deterministic inputs and workload on the Vitis AI NPU, DirectML GPU, and CPU execution providers. It reports session initialization and warmup separately from inference, saves per-request latency statistics and throughput, and preserves ONNX Runtime profiling files and CSV/JSON results.
+
+Run it from the Ryzen AI Conda environment that contains the AMD ONNX Runtime installation:
+
+```bat
+conda activate ryzen-ai-1.7.1
+python -c "import onnxruntime as ort; print(ort.get_available_providers())"
+python C:\path\to\torchbenchx\example\benchmark_onnx_providers.py C:\path\to\mobilenetv2.onnx
+```
+
+For NPU and GPU runs, the provider list should include `VitisAIExecutionProvider` and `DmlExecutionProvider`, as well as `CPUExecutionProvider`. A generic `pip install onnxruntime` installation may expose only CPU (or other non-AMD providers); it does not add the AMD providers. Use AMD's documented Ryzen AI 1.7.1 runtime/environment setup rather than replacing that runtime with a generic wheel.
+
+Options include `--batch-size`, `--runs`, `--warmup`, and `--input-shape C H W` for a rank-4 image input. The model metadata is used by default; unresolved dynamic dimensions default to `1`, so specify `--input-shape` when the model needs a particular image size. Failed or unavailable backends are reported as failed rows while other devices continue. Verification is based on provider assignments in profile node events, not merely on provider registration; `UNKNOWN` means the profile did not provide enough assignment information to confirm execution.
+
+Results are written to `benchmark_results\results.csv`, `benchmark_results\results.json`, and `benchmark_results\profiles\`. For example:
+
+```bat
+python example\benchmark_onnx_providers.py C:\Users\syeed\Desktop\mobilenetv2.onnx --runs 200 --warmup 20
+```
+
 ## Core Class: BenchX
 
 ```python
@@ -101,6 +123,4 @@ visualize_all()  # Returns dict of figures: scatter, throughput_bar, latency_bar
 ## License
 
 MIT
-
-
 
